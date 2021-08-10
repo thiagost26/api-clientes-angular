@@ -1,0 +1,97 @@
+<div class="container-search-table">
+  <div class="search-list">
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h3 style="text-align: center; color: deepskyblue;"><strong>Clientes</strong></h3>
+          <ol class="breadcrumb mt-4 col-md-12">
+            <li class="breadcrumb-item active">Consulta de clientes</li>
+          </ol>
+        </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso" >
+              {{ mensagemSucesso }}
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemError" >
+              {{ mensagemError }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <button class="btn btn-info" (click)="novoCadastro()">
+              <i class="fa fa-plus"></i>Novo
+            </button>
+            {{''}}
+            <button class="btn btn-warning" (click)="onRefresh()">
+              <i class="fa fa-plus"></i>Atualizar
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Data Cadastro</th>
+                  <th class="text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cliente of clientes" >
+                  <td>{{ cliente.id }}</td>
+                  <td>{{ cliente.nome }}</td>
+                  <td>{{ cliente.cpf }}</td>
+                  <td>{{ cliente.dataCadastro }}</td>
+                  <td >
+                    <span class="float-right pointer-event">
+                      <!-- <i class="bi bi-eye text-warning  pointer" style="font-size: 1.4rem;" ></i>
+                      {{' '}} -->
+                      <i class="bi bi-pencil-fill pointer-event"
+                        style="font-size: 1.4rem; color: cornflowerblue;"
+                        routerLink="/clientes-form/{{ cliente.id }}" >
+                      </i>
+                      {{' '}}
+                      <i class="bi bi-trash text-danger  pointer-event"
+                        style="font-size: 1.4rem;"
+                        data-toggle="modal"
+                        data-target="#modalDelecao" (click)="preparaDelecao(cliente)" ></i>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div id="modalDelecao" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Confirmação</h4>
+      </div>
+      <div class="modal-body" *ngIf="clienteSelecionado" >
+        Confirma a deleção do(a) cliente {{ clienteSelecionado.nome }}?
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="deletarCliente()"
+                data-dismiss="modal">Confirmar</button>
+        <button class="btn btn-info" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
