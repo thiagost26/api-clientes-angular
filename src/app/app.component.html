@@ -1,13 +1,46 @@
-<div class="container-scroller">
-  <app-navbar></app-navbar>
-  <div class="container page-body-wrapper">
-    <div class="container col-sm-12">
-      <main>
-        <div class="container-fluid">
-          <router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="mostrarMenu" >
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Good Stark</a>
+    <div class="collapse navbar-collapse  menus-nav" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" [routerLink]="['/clientes']" routerLinkActive="active">Clientes</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" [routerLink]="['/servicos-prestados']" routerLinkActive="active">Serviços-prestados</a>
+      </div>
+    </div>
+      <div class="navbar-nav  m-login">
+        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+      </div>
+      {{' '}}
+      <div class="navbar-nav  m-login">
+        <button class="btn btn-warning" (click)="sair()">
+          Sair
+        </button>
+      </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+
+
+<footer class="py-4 bg-light mt-auto">
+  <div class="container">
+    <div class="justify-content-center small">
+      <div class="d-flex">
+        <div class="text-muted  text-clientes">Copyright &copy; Clientes 2021</div>
+        <div>
+          <a href="#" class="ml-5">Privacy Policy</a>
+          &middot;
+          <a href="#" class="ml-1">Terms &amp; Conditions</a>
         </div>
-      </main>
-      <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-</div>
+</footer>
+
+

@@ -4,25 +4,23 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TemplateModule } from './template/template.module';
-import { HomeComponent } from './home/home.component';
-import { ClientesModule } from './clientes/clientes.module';
 import { ClientesService } from './clientes.service';
+import { ServicoPrestadoService } from './servico-prestado.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
-    AppRoutingModule,
-    TemplateModule,
-    ClientesModule,
+    AppRoutingModule
   ],
   providers: [
-    ClientesService
+    ClientesService,
+    ServicoPrestadoService
   ],
   bootstrap: [AppComponent]
 })

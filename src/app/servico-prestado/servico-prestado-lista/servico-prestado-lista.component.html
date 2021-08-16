@@ -1,0 +1,93 @@
+<div class="container-search-table">
+  <div class="search-list">
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h3 style="text-align: center; color: deepskyblue;"><strong>Consulta de Serviço Prestado</strong></h3>
+          <ol class="breadcrumb mt-4 col-md-12">
+            <li class="breadcrumb-item active">Realizar consulta de serviço prestado</li>
+          </ol>
+        </div>
+
+        <div class="container">
+          <form #form="ngForm" (ngSubmit)="onSubmit()" >
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Nome cliente:</label>
+                  <input class="form-control"
+                          [(ngModel)]="nome" type="text"
+                        name="nome" id="inputNome">
+                </div>
+
+                <label class="form-label" for="formLabelCliente">Mês:</label>
+                <select class="form-select form-select-sm mb-3"
+                        [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="mes"
+                        >
+                  <option value="">Selecione</option>
+                  <option *ngFor="let mes of meses" [ngValue]="mes" >
+                    {{ mes }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <button class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                  Consultar
+                </button>
+                {{' '}}
+                <button routerLink="/servicos-prestados/novo" type="button" class="btn btn-warning">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+                    <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"/>
+                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+                  </svg>
+                  Novo
+                </button>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="alert alert-warning" role="alert" *ngIf="message" >
+                  {{ message }}
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of lista" >
+                    <td>{{ s.cliente.nome }}</td>
+                    <td>{{ s.descricao }}</td>
+                    <td>{{ s.valor }}</td>
+                    <td>{{ s.data }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

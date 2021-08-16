@@ -1,9 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { LoginGuard } from './login/login.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent }
+  {
+    path: '', pathMatch: 'full', redirectTo: '/login',
+  },
+  {
+    path: 'clientes',
+      loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule),
+      canActivate: [LoginGuard]
+  },
+  {
+    path: 'servicos-prestados',
+      loadChildren: () => import('./servico-prestado/servico-prestado.module').then(m => m.ServicoPrestadoModule),
+      canActivate: [LoginGuard]
+  },
+  {
+    path: 'login',
+      loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
+  },
 ];
 
 @NgModule({
