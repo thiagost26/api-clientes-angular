@@ -4,7 +4,7 @@ import { LoginGuard } from './login/login.guard';
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', redirectTo: '/login',
+    path: '', pathMatch: 'full', redirectTo: '/clientes',
   },
   {
     path: 'clientes',
