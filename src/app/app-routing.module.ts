@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginGuard } from './login/login.guard';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', redirectTo: '/clientes-clie',
+    path: '', pathMatch: 'full', redirectTo: 'login',
   },
   {
     path: 'clientes',
       loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule),
-      canActivate: [LoginGuard]
+      canActivate: [AuthGuard]
   },
   {
     path: 'servicos-prestados',
       loadChildren: () => import('./servico-prestado/servico-prestado.module').then(m => m.ServicoPrestadoModule),
-      canActivate: [LoginGuard]
+      canActivate: [AuthGuard]
   },
   {
     path: 'login',

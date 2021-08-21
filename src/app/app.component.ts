@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginService } from './login/login.service';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +12,25 @@ export class AppComponent {
 
   mostrarMenu: boolean = false;
 
+  usuarioLogado: string;
+
   constructor(
-    private loginService: LoginService
+    private authService: AuthService,
+    private router: Router
     ) {}
 
   ngOnInit() {
-    this.loginService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostrarMenu = mostrar
+    this.usuarioLogado = this.authService.getUsuarioAutenticado();
+
+    this.authService.mostrarMenuEmitter.subscribe(
+      mostrar => this.mostrarMenu = mostrar,
     );
   }
 
-  sair() {
-    this.loginService.logOut();
+  logout() {
+    this.authService.encerrarSessao();
     this.mostrarMenu = false;
+    this.router.navigate(['/login']);
   }
 
 }

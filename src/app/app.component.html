@@ -6,27 +6,25 @@
         <a class="nav-link" [routerLink]="['/clientes']" routerLinkActive="active">Clientes</a>
       </div>
       <div class="navbar-nav">
-        <a class="nav-link" [routerLink]="['/servicos-prestados']" routerLinkActive="active">Serviços-prestados</a>
+          <a class="nav-link" [routerLink]="['/servicos-prestados']" routerLinkActive="active">Serviços-prestados</a>
+        </div>
       </div>
-    </div>
       <div class="navbar-nav  m-login">
         <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
       </div>
       {{' '}}
       <div class="navbar-nav  m-login">
-        <button class="btn btn-warning" (click)="sair()">
+        <button class="btn btn-warning" (click)="logout()">
           Sair
         </button>
       </div>
+    </div>
+  </nav>
+  Usuário: {{ usuarioLogado }}
+
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
   </div>
-</nav>
-
-
-
-<div class="container-fluid">
-  <router-outlet></router-outlet>
-</div>
-
 
 <footer class="py-4 bg-light mt-auto">
   <div class="container">
